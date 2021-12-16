@@ -6,19 +6,25 @@
 /*   By: csejault <csejault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:49:32 by csejault          #+#    #+#             */
-/*   Updated: 2021/12/16 13:10:44 by csejault         ###   ########.fr       */
+/*   Updated: 2021/12/16 16:46:54 by csejault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClassMaker.hpp"
 ClassMaker::ClassMaker( void )
 {
-	this->ask_info();
-	this->print_info();
-	this->create_content_hpp();
-	this->create_file_from_content(this->_file_name.append(HPP_EXT), _content_hpp);
-	this->create_content_cpp();
-	this->create_file_from_content(this->_file_name.append(CPP_EXT), _content_cpp);
+	if (this->ask_info())
+		return;
+	else if (this->print_info())
+		return;
+	else if (this->create_content_hpp())
+		return;
+	else if (this->create_file_from_content(this->_file_name.append(HPP_EXT), _content_hpp))
+		return;
+	else if (this->create_content_cpp())
+		return;
+	else if (this->create_file_from_content(this->_file_name.append(CPP_EXT), _content_cpp))
+		return;
 	return;
 }
 
@@ -88,16 +94,25 @@ int		ClassMaker::create_content_hpp( void )
 	std::cout << std::endl << "====== CREATING CONTENT HPP ======" << std::endl;
 
 	//READ - CONVERT template_hpp INTO string PREVIEW
+	std::cout << "Opening template : [" << COL_YELLOW << TEMPLATE_HPP << COL_NORMAL << "] - ";
 	std::ifstream template_hpp(TEMPLATE_HPP);
+	if (template_hpp.fail())
+	{
+		std::cout << "[" << COL_RED << "FAILLED"  << COL_NORMAL <<  "]" << std::endl;
+		return (1);
+	}
+	else
+		std::cout << "[" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
+
 	std::stringstream ss;
-   	ss << template_hpp.rdbuf();
+	ss << template_hpp.rdbuf();
 	this->_content_hpp = ss.str();
 
 	//FILL TEMPLATE FIELD
 	create_define_protect();
 	replace_field(this->_content_hpp, DEFINE_PROTECT, _define_protect);
 	replace_field(this->_content_hpp, CLASS_NAME, _class_name);
-	std::cout << "[" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
+	std::cout << "Content created with - [" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
 	return (0);
 }
 
@@ -107,14 +122,23 @@ int		ClassMaker::create_content_cpp( void )
 	std::cout << std::endl << "====== CREATING CONTENT CPP ======" << std::endl;
 
 	//READ - CONVERT template_hpp INTO string PREVIEW
+	std::cout << "Opening template : [" << COL_YELLOW << TEMPLATE_CPP << COL_NORMAL << "] - ";
 	std::ifstream template_cpp(TEMPLATE_CPP);
+	if (template_cpp.fail())
+	{
+		std::cout << "[" << COL_RED << "FAILLED"  << COL_NORMAL <<  "]" << std::endl;
+		return (1);
+	}
+	else
+		std::cout << "[" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
 	std::stringstream ss;
-   	ss << template_cpp.rdbuf();
+	ss << template_cpp.rdbuf();
 	this->_content_cpp = ss.str();
 
 	//FILL TEMPLATE FIELD
 	replace_field(this->_content_cpp, HEADER_NAME, _file_name.append(HPP_EXT));
-	std::cout << "[" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
+	replace_field(this->_content_cpp, CLASS_NAME, _class_name);
+	std::cout << "Content created with - [" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
 	return (0);
 }
 
@@ -133,10 +157,31 @@ int		ClassMaker::create_file_from_content(std::string & name, std::string & cont
 	//IF GOOD CREATE FILE
 	if (!input.compare("Y"))
 	{
+		std::cout << "Creating: [" << COL_YELLOW << name << COL_NORMAL << "] - ";
+		//CHECK if EXIST
+		std::ifstream check_if_exit;
+		check_if_exit.open(name.c_str());
+		if(check_if_exit) 
+		{
+			std::cout << "[" << COL_RED << "FAILLED"  << COL_NORMAL <<  "] - File already exit. Please remove it manualy." << std::endl;
+			check_if_exit.close();
+			return (1);
+		}
+		else {
+			std::cout<<"file doesn't exist";
+		}
 		std::ofstream ofs(name.c_str());
+		if (ofs.fail())
+		{
+			std::cout << "[" << COL_RED << "FAILLED"  << COL_NORMAL <<  "]" << std::endl;
+			return (1);
+		}
 		ofs << content;
 		ofs.close();
+		std::cout << "[" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
+		return (0);
 	}
-	else {std::cout << "!!! NOK !!!" << std::endl; return (1);}
+	//ELSE CONTINUE
+	std::cout << "[" << COL_YELLOW << name << COL_NORMAL << "] has not been created." << std::endl;
 	return (0);
 }
