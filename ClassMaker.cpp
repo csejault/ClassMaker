@@ -6,7 +6,7 @@
 /*   By: csejault <csejault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:49:32 by csejault          #+#    #+#             */
-/*   Updated: 2021/12/17 13:16:12 by csejault         ###   ########.fr       */
+/*   Updated: 2021/12/17 15:39:41 by csejault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ int		ClassMaker::print_info( void ) const
 	std::cout << "Template cpp loc = " << this->_template_cpp_loc << std::endl;
 	std::cout << COL_NORMAL;
 
-	std::cout << COL_RED << "Continue? Y/N" << COL_NORMAL << std::endl;
+	std::cout << COL_RED << "Continue? y/n" << COL_NORMAL << std::endl;
 	std::cin >> input;
-	if (input.compare("Y"))
+	if (input.compare("y"))
 		return(1);
 
 	return (0);
@@ -190,12 +190,12 @@ int		ClassMaker::create_file_from_content(std::string name, std::string & conten
 	std::cout << COL_YELLOW << content << COL_NORMAL << std::endl;
 
 	//HUMAN CHECK if data is GOOD
-	std::cout << COL_RED << "IS [" << name << "] OK FOR CREATION? Y/N : " << COL_NORMAL;
+	std::cout << COL_RED << "IS [" << name << "] OK FOR CREATION? y/n : " << COL_NORMAL;
 	std::string	input;
 	std::cin >> input;
 
 	//IF GOOD CREATE FILE
-	if (!input.compare("Y"))
+	if (!input.compare("y"))
 	{
 		std::cout << "Creating: [" << COL_YELLOW << name << COL_NORMAL << "] - ";
 		//CHECK if EXIST
