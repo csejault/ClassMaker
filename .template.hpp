@@ -6,22 +6,9 @@
 /*   By: csejault <csejault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 12:50:03 by csejault          #+#    #+#             */
-/*   Updated: 2022/01/03 12:50:30 by csejault         ###   ########.fr       */
+/*   Updated: 2022/01/03 12:54:27 by csejault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-//The codes for foreground and background colours are:
-//
-//         foreground background
-//black        30         40
-//red          31         41
-//green        32         42
-//yellow       33         43
-//blue         34         44
-//magenta      35         45
-//cyan         36         46
-//white        37         47
 
 #ifndef ___DEFINE_PROTECT___
 # define ___DEFINE_PROTECT___
@@ -57,3 +44,15 @@ class	___CLASS_NAME___ {
 };
 
 #endif
+
+//The codes for foreground and background colours are:
+//
+//         foreground background
+//black        30         40
+//red          31         41
+//green        32         42
+//yellow       33         43
+//blue         34         44
+//magenta      35         45
+//cyan         36         46
+//white        37         47
