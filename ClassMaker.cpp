@@ -6,7 +6,7 @@
 /*   By: csejault <csejault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:49:32 by csejault          #+#    #+#             */
-/*   Updated: 2021/12/17 15:39:41 by csejault         ###   ########.fr       */
+/*   Updated: 2022/01/03 12:39:08 by csejault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int		ClassMaker::create_content_hpp( void )
 	create_define_protect();
 	replace_field(this->_content_hpp, DEFINE_PROTECT, _define_protect);
 	replace_field(this->_content_hpp, CLASS_NAME, _class_name);
+	replace_field(this->_content_cpp, TEMPLATE_HPP, _hpp_file_name);
 	std::cout << "Content created with - [" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
 	return (0);
 }
@@ -177,6 +178,8 @@ int		ClassMaker::create_content_cpp( void )
 
 	//FILL TEMPLATE FIELD
 	replace_field(this->_content_cpp, HEADER_NAME, _hpp_file_name);
+	replace_field(this->_content_cpp, TEMPLATE_HPP, _hpp_file_name);
+	replace_field(this->_content_cpp, TEMPLATE_CPP, _cpp_file_name);
 	replace_field(this->_content_cpp, CLASS_NAME, _class_name);
 	std::cout << "Content created with - [" << COL_GREEN << "SUCCESS"  << COL_NORMAL <<  "]" << std::endl;
 	return (0);

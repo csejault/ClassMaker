@@ -6,7 +6,7 @@
 /*   By: csejault <csejault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:47:09 by csejault          #+#    #+#             */
-/*   Updated: 2021/12/17 13:08:08 by csejault         ###   ########.fr       */
+/*   Updated: 2022/01/03 12:35:28 by csejault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define DEFINE_PROTECT	"___DEFINE_PROTECT___"
 # define CLASS_NAME		"___CLASS_NAME___"
 # define HEADER_NAME	"___HEADER_NAME___"
+# define SOURCE_NAME	"___SOURCE_NAME___"
 
 # include <iostream>
 # include <fstream>
