@@ -6,9 +6,10 @@
 /*   By: csejault <csejault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 12:50:03 by csejault          #+#    #+#             */
-/*   Updated: 2022/01/03 12:54:27 by csejault         ###   ########.fr       */
+/*   Updated: 2022/01/11 18:34:03 by csejault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+//Class_Name = ___CLASS_NAME___
 
 #ifndef ___DEFINE_PROTECT___
 # define ___DEFINE_PROTECT___
@@ -31,15 +32,42 @@
 class	___CLASS_NAME___ {
 
 	public:
+		//pub_constructor{
 		___CLASS_NAME___( void );
 		___CLASS_NAME___( ___CLASS_NAME___ const & src );
 		___CLASS_NAME___ &	operator=( ___CLASS_NAME___ const & rhs );
 		~___CLASS_NAME___( void );
+		//pub_constructor - END}
+
+		//pub_debug{
 		static bool	get_verbose( void );
 		static void	set_verbose( bool status );
+		//pub_debug - END}
+		
+		//pub_static{
+		
+		//pub_static - END}
+		
+		//pub_getter{
+		
+		//pub_getter - END}
+
+		//pub_setter{
+		
+		//pub_setter - END}
 
 	private:
-		static bool _verbose;
+		//priv_debug{
+
+		//priv_debug - END}
+		
+		//priv_constructor{
+		
+		//priv_constructor - END}
+
+		//priv_static{
+		
+		//priv_static - END}
 
 };
 
